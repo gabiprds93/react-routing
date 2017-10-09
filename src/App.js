@@ -3,7 +3,6 @@ import './App.css';
 import {
   BrowserRouter,
   Route,
-  Link,
   Switch,
   NavLink,
   Redirect
@@ -120,9 +119,9 @@ class Courses extends Component
 				<div className="course-header">
 					<h2 className="col-md-6">Courses</h2>
 					<ul className="nav navbar-nav navbar-right text-uppercase col-md-6">
-						<li><NavLink exact to="/courses/html"> HTML </NavLink></li>
-						<li><NavLink to="/courses/css"> CSS </NavLink></li>
-						<li><NavLink to="/courses/javascript"> JavaScript </NavLink></li>
+            <OldSchoolMenuLink activeOnlyWhenExact={true} to="/courses/html" label="HTML"/>
+            <OldSchoolMenuLink to="/courses/css" label="CSS"/>
+            <OldSchoolMenuLink to="/courses/javascript" label="JavaScript"/>
 					</ul>
         </div>
 				<Switch> 
@@ -348,7 +347,7 @@ const NotFoundPage = (props) =>
 const OldSchoolMenuLink = ({ label, to, activeOnlyWhenExact }) => (
   <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => (
     <li className={match ? 'active' : ''}>
-      <Link to={to}>{label}</Link>
+      <NavLink to={to}>{label}</NavLink>
     </li>
   )}/>
 )
@@ -368,14 +367,12 @@ class App extends Component
             <div className="container-fluid">
               <div className="navbar-header icon">
                 <i className="material-icons" id="icon">code</i>
-              </div>
-              
-              
+              </div>    
               <ul className="nav navbar-nav navbar-right text-uppercase">
                 <OldSchoolMenuLink activeOnlyWhenExact={true} to="/" label="Home"/>
                 <OldSchoolMenuLink to="/about" label="About"/>
-                <li><NavLink to="/teachers">Teachers</NavLink></li>
-                <li><NavLink to="/courses">Courses</NavLink></li>
+                <OldSchoolMenuLink to="/teachers" label="Teachers"/>
+                <OldSchoolMenuLink to="/courses" label="Courses"/>
               </ul>
             </div>
           </nav>
